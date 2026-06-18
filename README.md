@@ -81,10 +81,13 @@ Minimum Order Value Threshold Configuration
    o	Over-Threshold Checkout: Any cart balance exceeding $100 triggered the intercept loop, displaying the verification modal window before permitting order confirmation. 
 ```
 ## 📜 5. Programmatic & Role-Based Bypass Architectures
+
 Two independent bypass systems were designed to keep development velocities high and allow smooth internal operations. 
+```
 Method 1: No-Code Administrative Role Mapping
 Using the plugin settings workspace, internal administrative and QA tester user structures were mapped to completely bypass frontend verification loops. This allowed internal support teams to safely execute end-to-end transaction flows without getting bottlenecked by security checkwalls. 
+
 Method 2: Programmatic Location-Based Exclusion Logic
 A custom PHP snippet was engineered to intercept the background order metadata array. If a customer's shipping address matches specific pre-approved regional compliance criteria, the script returns an authenticated whitelist validation packet to bypass the verification wall. 
-
+```
 
