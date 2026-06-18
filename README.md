@@ -11,7 +11,7 @@
  ┗ 📜 6. Webhook Subsystem Impact & Performance Metrics
 ```
 
-📜 1. Project Infrastructure & Baseline Architecture
+## 📜 1. Project Infrastructure & Baseline Architecture
 
 Introduction
 
@@ -28,7 +28,7 @@ The entire lifecycle was developed within an isolated, sandboxed environment to 
 Workspace Verification Artifacts
 The initialized, unbranded WordPress environment tracking configuration, database properties, and transactional configurations can be referenced below:
 
-📜 2. Loopback Network Diagnostics & Resolution
+## 📜 2. Loopback Network Diagnostics & Resolution
 
 Authentication Failure
 Upon deploying the vendor's identity validation module inside the local ecosystem, initialization scripts immediately dropped communication with the remote server infrastructure, yielding an API handshake failure.
@@ -49,7 +49,7 @@ Resolution Steps
 
 Result: The proxy domain satisfied the vendor's security handshake protocols, immediately stabilizing bi-directional data routing.
 
-📜 3. Dynamic UI Customization via WordPress Hooks
+## 📜 3. Dynamic UI Customization via WordPress Hooks
 
 Challenge
 The client required specific legal compliance verbiage at checkout that deviated from the vendor plugin's default layout. Rather than altering vendor core files directly—which would break compatibility and overwrite changes on future plugin updates—the solution was built using native WordPress filter hooks. 
@@ -68,5 +68,23 @@ add_filter('_wc_checkout_verification_agreement_label', function ($label) {
 Outcome
 The rendering pipeline successfully intercepted the default interface string, dynamically updating the checkout UI text with zero structural friction. 
 
+## 📜 4. Multi-Tier Conditional Routing & Value Thresholds
+
+To prevent user drop-off and optimize business performance, compliance gates were configured to trigger dynamically based on product taxonomy and order totals. 
+Taxonomy Restrictions
+The integration layer was hooked directly into the active WooCommerce cart evaluation routine. If an order contains items from a designated "Regulated Goods" category, the compliance engine automatically captures the checkout sequence and demands validation before allowing payment processing. 
+
+Minimum Order Value Threshold Configuration
+•	Trigger Value: The plugin administration workspace was configured with a strict minimum order value cutoff of 100. 
+•	Conditional Testing Matrices:
+o	Sub-Threshold Checkout: Carts carrying total transactional amounts below the $100 barrier proceeded directly to billing with zero user friction, bypassing the compliance gateway completely. 
+o	Over-Threshold Checkout: Any cart balance exceeding $100 triggered the intercept loop, displaying the verification modal window before permitting order confirmation. 
+
+## 📜 5. Programmatic & Role-Based Bypass Architectures
+Two independent bypass systems were designed to keep development velocities high and allow smooth internal operations. 
+Method 1: No-Code Administrative Role Mapping
+Using the plugin settings workspace, internal administrative and QA tester user structures were mapped to completely bypass frontend verification loops. This allowed internal support teams to safely execute end-to-end transaction flows without getting bottlenecked by security checkwalls. 
+Method 2: Programmatic Location-Based Exclusion Logic
+A custom PHP snippet was engineered to intercept the background order metadata array. If a customer's shipping address matches specific pre-approved regional compliance criteria, the script returns an authenticated whitelist validation packet to bypass the verification wall. 
 
 
