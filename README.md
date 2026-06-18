@@ -57,7 +57,6 @@ Implementation Workflow
 Using VS Code, the core application directories were scanned to locate the precise text rendering filter: _wc_checkout_verification_agreement_label. 
 The production-ready filter injection can be referenced below:
 
-PHP
 /**
  * Dynamic Interception and Modification of Compliance Consent Text
  */
