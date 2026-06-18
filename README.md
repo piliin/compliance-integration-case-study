@@ -57,14 +57,14 @@ Implementation Workflow
 
 Using VS Code, the core application directories were scanned to locate the precise text rendering filter: _wc_checkout_verification_agreement_label. 
 The production-ready filter injection can be referenced below:
-
+```text
 /**
  * Dynamic Interception and Modification of Compliance Consent Text
  */
 add_filter('_wc_checkout_verification_agreement_label', function ($label) {
     return 'I agree to submit verification to proceed in my purchased.';
 });
-
+```
 Outcome
 The rendering pipeline successfully intercepted the default interface string, dynamically updating the checkout UI text with zero structural friction. 
 
