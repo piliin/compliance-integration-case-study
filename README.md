@@ -83,11 +83,44 @@ Minimum Order Value Threshold Configuration
 ## 📜 5. Programmatic & Role-Based Bypass Architectures
 
 Two independent bypass systems were designed to keep development velocities high and allow smooth internal operations. 
-```
+
 Method 1: No-Code Administrative Role Mapping
 Using the plugin settings workspace, internal administrative and QA tester user structures were mapped to completely bypass frontend verification loops. This allowed internal support teams to safely execute end-to-end transaction flows without getting bottlenecked by security checkwalls. 
 
 Method 2: Programmatic Location-Based Exclusion Logic
 A custom PHP snippet was engineered to intercept the background order metadata array. If a customer's shipping address matches specific pre-approved regional compliance criteria, the script returns an authenticated whitelist validation packet to bypass the verification wall. 
-```
+```text
+PHP
+/**
+ * Programmatic Bypass of Compliance Gateways Based on Regional Criteria
+ */
+add_filter('_order_whitelisted_data', function ($whitelist_data, $order_id) {
+    $shipping_country = '';
+    
+    if (!empty($order_id)) {
+        $order = wc_get_order($order_id);
+        if ($order) {
+            $shipping_country = $order->get_shipping_country();
+        }
+    }
+    
+    // Staging Fallback Check: Extract active checkout context parameters
+    if (empty($shipping_country) && function_exists('WC') && WC()->customer) {
+        $shipping_country = WC()->customer->get_shipping_country();
+    }
+    if (empty($shipping_country) && isset($_POST['shipping_country'])) {
+        $shipping_country = sanitize_text_field($_POST['shipping_country']);
+    }
 
+    // Evaluate target region clearance criteria
+    if ($shipping_country === 'PH') {
+        return array(
+            'source' => 'custom_country_bypass',
+            'reason' => 'Shipping destination matches pre-approved regional compliance criteria.'
+        );
+    }
+    
+    return $whitelist_data;
+}, 10, 2);
+
+```
