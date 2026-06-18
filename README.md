@@ -33,11 +33,12 @@ The initialized, unbranded WordPress environment tracking configuration, databas
 Authentication Failure
 Upon deploying the vendor's identity validation module inside the local ecosystem, initialization scripts immediately dropped communication with the remote server infrastructure, yielding an API handshake failure.
 
+```text
 ┌─────────────────────────┐        ❌ Drop Connection      ┌────────────────────────┐
 │     Staging Network     │────────────────────────────────>│   Remote Validation    │
 │(Localhost Domain Target)│<────────────────────────────────│       API Server       │
 └─────────────────────────┘        Invalid Loop Wrapper     └────────────────────────┘
-
+```
 Root Cause Identification
 A deep-dive audit of the system logs revealed that the third-party verification engine's internal security framework inherently rejects unverified localhost or local domain suffixes (e.g., .local). The platform requires a globally resolvable, SSL-compliant URL endpoint schema to accurately map security nonces and establish data tunnels.
 
