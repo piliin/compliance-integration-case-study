@@ -77,8 +77,8 @@ The integration layer was hooked directly into the active WooCommerce cart evalu
 Minimum Order Value Threshold Configuration
 •	Trigger Value: The plugin administration workspace was configured with a strict minimum order value cutoff of 100. 
 •	Conditional Testing Matrices:
-o	Sub-Threshold Checkout: Carts carrying total transactional amounts below the $100 barrier proceeded directly to billing with zero user friction, bypassing the compliance gateway completely. 
-o	Over-Threshold Checkout: Any cart balance exceeding $100 triggered the intercept loop, displaying the verification modal window before permitting order confirmation. 
+   o	Sub-Threshold Checkout: Carts carrying total transactional amounts below the $100 barrier proceeded directly to billing with zero user friction, bypassing the compliance gateway completely. 
+   o	Over-Threshold Checkout: Any cart balance exceeding $100 triggered the intercept loop, displaying the verification modal window before permitting order confirmation. 
 
 ## 📜 5. Programmatic & Role-Based Bypass Architectures
 Two independent bypass systems were designed to keep development velocities high and allow smooth internal operations. 
