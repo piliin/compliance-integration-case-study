@@ -124,5 +124,43 @@ add_filter('_order_whitelisted_data', function ($whitelist_data, $order_id) {
     
     return $whitelist_data;
 }, 10, 2);
-
 ```
+
+## 📜 6. Webhook Subsystem Impact & Performance Metrics
+
+Payload Interception Profile
+
+Using browser-based diagnostic suites, the backend execution highway was audited during standard checkout routines. The system successfully monitored background requests processing through the primary core router link: ``` POST: /wp-admin/admin-ajax.php?action=verify_person. ```
+The intercepted JSON array securely packaged explicit security nonces, token states, and user parameters. This network validation timeline is captured below: 
+
+Inbound Webhook Analysis
+During validation routines utilizing fake identities, real-time developer monitoring accurately returned proper identity exceptions (```isVerified: noMatch```). However, the core backend system logged a "No Webhook Activity" notification state. 
+
+```text
++--------------------------------------------------------------------------+
+|                  WEBHOOK NETWORK BLOCK DISCOVERY                         |
++--------------------------------------------------------------------------+
+|  Remote Compliance Server -----[ Webhook Push ]----x  (Blocked/Dropped)   |
+|                                                          |               |
+|                                                ┌─────────┴────────────┐  |
+|                                                │  LocalWP Router IP   │  |
+|                                                │  (Inbound Closed)    │  |
+|                                                └──────────────────────┘  |
++--------------------------------------------------------------------------+
+```
+
+This behavior is an expected architectural limitation when running asynchronous webhooks inside localized loopback setups. While outbound AJAX operations pass through local firewalls safely, inbound API push events cannot map a path down to a local address without public server hosting. Once deployed to a public cloud infrastructure, webhooks resolve instantly to automatically advance order logs into fulfillment queues. 
+
+Resource Lifecycle Metrics
+The engineering resource tracking below shows the development velocity required to build, test, and document this compliance pipeline: 
+
+Integration Segment	Allocation Metrics
+```
+Sandbox Environment Provisioning	1 Hour 00 Mins
+API Parameter Tuning & Workspace Mapping	0 Hours 30 Mins
+Technical Verification & Sandbox Executions	3 Hours 00 Mins
+System Documentation Construction	2 Hours 00 Mins
+Staging Asset Generation & Capture	1 Hour 30 Mins
+Total Engineering Lifecycle Allocation	8 Hours 00 Mins
+```
+
